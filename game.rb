@@ -26,4 +26,11 @@ class Game
             @previous_guess = []
         end
     end
+    def prompt
+        "type two numbers separated by a space"
+        # 3 2
+        # ["3", "2"]
+        # [3,2]
+        player_input = gets.chomp.split(" ").map{|ele| ele.to_i}
+    end
 end
