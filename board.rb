@@ -29,4 +29,12 @@ class Board
             puts inner.map{ |card| card.visible ? card.face : ' ' }.join(' ')
         end
     end
+    def won?
+        @grid.each do |inner|
+            inner.each do |card|
+                return false unless card.visible
+            end
+        end
+        true
+    end
 end
