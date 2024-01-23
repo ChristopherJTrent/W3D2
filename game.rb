@@ -30,6 +30,13 @@ class Game
             @previous_guess = []
         end
     end
+
+    def get_guess
+        if @board.open_pos?(player_input)
+            return
+        end
+    end
+
     def prompt
         puts "type two numbers separated by a space"
         player_input = gets.chomp.split(" ").map{|ele| ele.to_i}
