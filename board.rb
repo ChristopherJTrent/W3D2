@@ -17,4 +17,17 @@ class Board
             inner.map! { |ele| ele = faces.pop }
         end
     end
+
+    def render
+        (0..3).each do |ele|
+            print ele.to_s + ' '
+        end
+        puts
+        (0..3).each do |ele|
+            puts ele.to_s + ' '
+        end
+        @grid.each do |inner|
+            puts inner.join(' ')
+        end
+    end
 end
