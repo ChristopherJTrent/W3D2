@@ -6,6 +6,10 @@ class Board
         @grid = Array.new(4) { Array.new(4) }
     end
 
+    def [](pos)
+        @grid[pos[0]][pos[1]]
+    end
+
     def populate
         faces = []
         ('A'..'H').each do |char|
