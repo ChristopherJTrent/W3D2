@@ -4,6 +4,7 @@ class Game
     def initialize
         @board = Board.new
         @previous_guess = []
+        @current_player = nil
     end
     def play
         @board.render
@@ -32,16 +33,10 @@ class Game
     end
 
     def get_guess
-        if @board.open_pos?(player_input)
-            return
+        player_input = @current_player.prompt
+        until @board.open_pos?(player_input) 
+            player_input = @current_player.prompt 
         end
-    end
-
-    def prompt
-        puts "type two numbers separated by a space"
-        player_input = gets.chomp.split(" ").map{|ele| ele.to_i}
-        return prompt if player_input.any? { |ele| ele > 3 }
-        return prompt unless @board.open_pos?(player_input)
         player_input
     end
 end
