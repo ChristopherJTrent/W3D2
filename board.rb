@@ -4,6 +4,7 @@ class Board
 
     def initialize
         @grid = Array.new(4) { Array.new(4) }
+        populate
     end
 
     def [](pos)
@@ -41,5 +42,9 @@ class Board
             end
         end
         true
+    end
+
+    def open_pos?(pos)
+        !self[pos].visible  
     end
 end
