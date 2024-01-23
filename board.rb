@@ -14,20 +14,19 @@ class Board
         end
         faces.shuffle!
         @grid.map! do |inner|
-            inner.map! { |ele| ele = faces.pop }
+            inner.map! { |ele| ele = Card.new(faces.pop) }
         end
     end
 
     def render
+        print "  "
         (0..3).each do |ele|
             print ele.to_s + ' '
         end
         puts
-        (0..3).each do |ele|
-            puts ele.to_s + ' '
-        end
-        @grid.each do |inner|
-            puts inner.join(' ')
+        @grid.each_with_index do |inner, idx|
+            print idx.to_s + ' '
+            puts inner.map{ |card| card.visible ? card.face : ' ' }.join(' ')
         end
     end
 end
