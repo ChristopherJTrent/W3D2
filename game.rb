@@ -1,18 +1,30 @@
 require_relative "board.rb"
+require_relative "computer_player.rb"
+require_relative "human_player.rb"
 
 class Game
     def initialize
         @board = Board.new
         @previous_guess = []
-        @current_player = nil
+        @player_1 = HumanPlayer.new
+        @player_2 = ComputerPlayer.new
+        @current_player = @player_1
     end
+
+    def switch!
+        @current_player = @current_player == @player_1 ? @player_2 : @player_1 
+    end
+
     def play
-        @board.render
         until @board.won?
             @board.render
-            make_guess(prompt)
+            make_guess(@current_player.prompt)
+            system('clear')
+            @board.render
+            make_guess(@current_player.prompt)
             #prompt returns [x, y] 
             system('clear')
+            switch!
         end
     end
 
